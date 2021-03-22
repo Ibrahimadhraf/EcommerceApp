@@ -1,4 +1,5 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:online_shopping/view/helpers/size_config.dart';
@@ -7,6 +8,7 @@ class CommonTextControllers {
   static Widget customTextField(
       {TextEditingController controller,
          Function validator,
+        String hint,
         Function onSave,
         String labelText,
         Widget suffix,
@@ -43,6 +45,7 @@ class CommonTextControllers {
       margin: containerPadding ??
           EdgeInsets.symmetric(horizontal: SizeConfig().safeBlockHorizontal * 2),
       child: TextFormField(
+
         inputFormatters: inputFormatter,
         key: formKey,
         cursorColor: Colors.black,
@@ -63,8 +66,9 @@ class CommonTextControllers {
         onFieldSubmitted: onSubmitted,
           decoration: InputDecoration(
           contentPadding: EdgeInsets.all(SizeConfig().safeBlockHorizontal * 1),
-          border: InputBorder.none,
+          border: UnderlineInputBorder(),
           labelText: labelText ?? '',
+            hintText: hint==null?'' :hint,
               labelStyle:TextStyle(
                 color:Colors.grey.shade900,
                // fontWeight: FontWeight.bold,
@@ -101,7 +105,7 @@ class CommonTextControllers {
               TextStyle(
 
                // color: fontColor ?? AppColors.blue,
-                fontSize: fontSize ?? SizeConfig().fontSize20,
+                fontSize: fontSize ?? SizeConfig().fontSize12,
                 fontWeight: fontWeight ?? FontWeight.w400,
               ),
           errorMaxLines: 2,

@@ -11,24 +11,37 @@ class CardViewModel extends GetxController {
   ValueNotifier<bool> get loading => _loading;
   ValueNotifier<bool> _loading = ValueNotifier(false);
   var dbHelper = CartDatabaseHelper.db;
-  double get totalPrice => _totalPrice;
-  double _totalPrice = 0.0;
+  var _totalPrice=RxDouble(0.0) ;
+  double get totalPrice => _totalPrice.value;
 
-  @override
-  void onInit() {
-    super.onInit();
-    getAllProducts();
-  }
+
+
+  // @override
+  // void onInit() {
+  //   super.onInit();
+  //   getAllProducts();
+  //   update();
+  //
+  // }
 
   getAllProducts() async {
+
     _loading.value = true;
 
-    _cardList = await dbHelper.getAllProducts();
+    await dbHelper.getAllProducts().then((value){
+      _cardList=value;
+      _loading.value = false;
+      print('call_1');
+      getTotalPrice();
+      print('call_2');
+      update();
+    });
 
-    _loading.value = false;
-    getTotalPrice();
-    update();
-    print(_cardList.length);
+
+
+
+
+
 
   }
 
@@ -50,16 +63,23 @@ class CardViewModel extends GetxController {
   }
 
   getTotalPrice() {
-    for (int i = 0; i <= _cardList.length; i++) {
-      print(_cardList.length);
-      _totalPrice += (double.parse(_cardList[i].price)) * _cardList[i].quantity;
-      print( "totalPrice $_totalPrice");
+
+    _totalPrice.value=0;
+    print('test');
+    for (var card in _cardList) {
+      print(card.toJson());
+      _totalPrice.value += (double.parse(card.price) * card.quantity);
+
+
+
+      print( "totalPrice $totalPrice");
+      update();
     }
-    update();
+
   }
   increaseQuantity(int index) async{
    _cardList[index].quantity++;
-   _totalPrice+= (double.parse(_cardList[index].price));
+   _totalPrice.value+= (double.parse(_cardList[index].price));
     await dbHelper.updateProduct(_cardList[index]);
    update();
 
@@ -68,7 +88,7 @@ class CardViewModel extends GetxController {
     print('clicked');
     _cardList[index].quantity--;
     print(_cardList[index].quantity);
-    _totalPrice-= (double.parse(_cardList[index].price));
+    _totalPrice.value-= (double.parse(_cardList[index].price));
    await  dbHelper.updateProduct(_cardList[index]);
     update();
 

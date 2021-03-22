@@ -11,6 +11,8 @@ class ControlViewModel extends GetxController{
   Widget currentScreen=HomeScreen();
   void changeNavigatorValue(int selectedValue){
     _navigatorValue=selectedValue;
+
+    print('test88888888888888888888888');
     switch(selectedValue){
       case 0:
         currentScreen=HomeScreen();

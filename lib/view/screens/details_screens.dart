@@ -137,7 +137,15 @@ class DetailsScreens extends StatelessWidget {
 
                              )
                          );
+print(CardProductModel(
+  name: model.name ,
+  image: model.image ,
+  price: model.price,
 
+  quantity: 1 ,
+  id: model.productID,
+
+).price);
                        },
                        child: Container(
                          child: Center(child: CostumeText(text: 'ADD', color: Colors.white,)),

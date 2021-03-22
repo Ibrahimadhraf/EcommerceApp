@@ -1,9 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:online_shopping/model/category_model.dart';
 import 'package:online_shopping/model/product_model.dart';
 import 'package:online_shopping/service/home_service.dart';
+import 'package:online_shopping/view/helpers/size_config.dart';
+import 'package:online_shopping/view/screens/home_screen.dart';
+
+import 'control_view_model.dart';
 
 class HomeViewModel extends GetxController{
   ValueNotifier<bool> get loading=> _loading;
@@ -45,4 +50,6 @@ HomeService().getCategory().then((value) {
     update();
     });
   }
+
+
 }

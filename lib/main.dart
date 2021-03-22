@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
       ],
       child: GetMaterialApp(
         initialBinding: Binding(),
+        debugShowCheckedModeBanner: false,
         title: 'Online Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,

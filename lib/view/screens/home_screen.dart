@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:online_shopping/view/helpers/application_colors.dart';
 import 'package:online_shopping/view/helpers/size_config.dart';
+import 'package:online_shopping/view/screens/controller_view.dart';
 import 'package:online_shopping/view/screens/details_screens.dart';
 import 'package:online_shopping/view/widgets/common_text_controller.dart';
 import 'package:online_shopping/view/widgets/custome_text.dart';
 import 'package:online_shopping/view/widgets/horizontal_space.dart';
 import 'package:online_shopping/view/widgets/vertical_space.dart';
+import 'package:online_shopping/viewmodel/control_view_model.dart';
 import 'package:online_shopping/viewmodel/home_view_model.dart';
 
 
