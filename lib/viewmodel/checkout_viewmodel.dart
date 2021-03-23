@@ -5,7 +5,8 @@ import 'package:online_shopping/view/helpers/enum.dart';
 import 'package:online_shopping/view/screens/controller_view.dart';
 
 class CheckOutViewModel extends GetxController{
-
+  String street1,street2,city,state,country;
+  final GlobalKey<FormState> addressFormFieldState = GlobalKey();
   int get index=>_index;
   int _index = 0;
   Pages get pages=>_pages;
@@ -20,13 +21,26 @@ class CheckOutViewModel extends GetxController{
     }
   }
   void changeIndex(int i){
+    if(i==0||i<0){
+      _pages=Pages.DeliveryTime;
+      _index=i;
+
+    }
+      else if(i==1){
+
+          _pages=Pages.AddAddress;
+
+           _index=i;
+      }else if(i==2){
+        addressFormFieldState.currentState.save();
+  if(addressFormFieldState.currentState.validate()) {
+    _pages = Pages.Summary;
     _index=i;
-      if(_index==1){
-        _pages=Pages.AddAddress;
-      }else if(_index==2){
-        _pages=Pages.Summary;
+  }
       }else{
         Get.to(()=>ControllerView());
+        _pages=Pages.DeliveryTime;
+        _index=0;
       }
      update();
   }

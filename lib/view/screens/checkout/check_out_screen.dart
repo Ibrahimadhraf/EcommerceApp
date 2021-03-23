@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:online_shopping/view/helpers/application_colors.dart';
 import 'package:online_shopping/view/helpers/constants.dart';
 import 'package:online_shopping/view/helpers/enum.dart';
 import 'package:online_shopping/view/helpers/size_config.dart';
@@ -118,20 +119,46 @@ Widget build(BuildContext context) {
               ? AddAddress()
               : Summary(),
 
-        Align(
-          alignment: Alignment.centerRight,
-          child: Container(
-            padding: EdgeInsets.all(SizeConfig().safeBlockHorizontal*5),
-            width: SizeConfig().screenWidth*.5,
-            height: SizeConfig().screenWidth*.25 ,
-            child: CustomButton(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            controller.index==0?
+            Container(
+              width: 0,
+              height: 0,
+            ):
+            Align(
+              alignment: Alignment.centerRight,
+              child: Container(
+                padding: EdgeInsets.all(SizeConfig().safeBlockHorizontal*5),
+                width: SizeConfig().screenWidth*.5,
+                height: SizeConfig().screenWidth*.25 ,
+                child: CustomButton(
+                  textColor: ApplicationColors().primaryColor,
+                 color:Colors.white,
+                    onPress: (){
 
-                onPress: (){
+                  controller.changeIndex(controller.index-1);
+                },
+                text: 'Back',),
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Container(
+                padding: EdgeInsets.all(SizeConfig().safeBlockHorizontal*5),
+                width: SizeConfig().screenWidth*.5,
+                height: SizeConfig().screenWidth*.25 ,
+                child: CustomButton(
+                    color: ApplicationColors().primaryColor,
+                  onPress: (){
 
-              controller.changeIndex(controller.index+1);
-            },
-            text: 'Next',),
-          ),
+                    controller.changeIndex(controller.index+1);
+                  },
+                  text: 'Next',),
+              ),
+            ),
+          ],
         )
         ],
       ),

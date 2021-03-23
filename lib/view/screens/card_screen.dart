@@ -64,7 +64,7 @@ class _CardScreenState extends State<CardScreen> {
                     itemCount: controller.cardList.length,
                     itemBuilder: (context, index) {
                       return Container(
-                          height: SizeConfig().safeBlockHorizontal * 30,
+                          height: SizeConfig().safeBlockHorizontal * 35,
                           child: Row(
                             children: [
                               Container(
@@ -96,7 +96,7 @@ class _CardScreenState extends State<CardScreen> {
                                     ),
                                     Container(
                                       width: SizeConfig().safeBlockVertical * 15,
-                                      height: SizeConfig().safeBlockVertical * 4,
+                                      height: SizeConfig().safeBlockVertical * 5,
                                       color: Colors.grey.shade200,
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.center,
